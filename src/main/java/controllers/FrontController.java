@@ -20,18 +20,17 @@ public class FrontController extends HttpServlet {
     public FrontController() {
         super();
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ActionBase action = getAction(request, response);
-        action.init(getServletContext(), request, response);
+        action.init(getServletContext(),request,response);
         action.process();
+
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
-
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private ActionBase getAction(HttpServletRequest request, HttpServletResponse response) {
         Class type = null;
@@ -39,6 +38,7 @@ public class FrontController extends HttpServlet {
         try {
 
             String actionString = request.getParameter(ForwardConst.ACT.getValue());
+
 
             type = Class.forName(String.format("actions.%sAction", actionString));
 
@@ -55,4 +55,3 @@ public class FrontController extends HttpServlet {
     }
 
 }
-

@@ -1,5 +1,6 @@
 package actions.views;
 
+
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -11,22 +12,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class EmployeeView {
-
-    private Integer id;
-
+    private Integer Id;
     private String code;
-
     private String name;
-
     private String password;
-
     private Integer adminFlag;
-
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
-
     private Integer deleteFlag;
 
 }

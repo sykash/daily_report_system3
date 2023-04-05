@@ -10,7 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-
 @WebFilter("/*")
 public class EncodingFilter implements Filter {
 
@@ -30,7 +29,6 @@ public class EncodingFilter implements Filter {
     }
 
     public void init(FilterConfig fConfig) throws ServletException {
-
     }
 
 }

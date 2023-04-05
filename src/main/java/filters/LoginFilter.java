@@ -68,7 +68,6 @@ public class LoginFilter implements Filter {
 
                     } else if (ForwardConst.CMD_LOGOUT.getValue().equals(command)) {
 
-
                     } else {
 
                         String forward = String.format("/WEB-INF/views/%s.jsp", "error/unknown");

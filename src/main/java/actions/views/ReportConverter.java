@@ -1,5 +1,4 @@
 package actions.views;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +17,7 @@ public class ReportConverter {
                 rv.getUpdatedAt());
     }
 
+
     public static ReportView toView(Report r) {
 
         if (r == null) {
@@ -33,6 +33,7 @@ public class ReportConverter {
                 r.getCreatedAt(),
                 r.getUpdatedAt());
     }
+
 
     public static List<ReportView> toViewList(List<Report> list) {
         List<ReportView> evs = new ArrayList<>();

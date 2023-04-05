@@ -1,4 +1,5 @@
 package models;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -42,6 +43,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 public class Report {
+
     @Id
     @Column(name = JpaConst.REP_COL_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

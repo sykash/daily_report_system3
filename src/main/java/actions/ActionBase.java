@@ -15,6 +15,7 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.PropertyConst;
 
+
 public abstract class ActionBase {
     protected ServletContext context;
     protected HttpServletRequest request;
@@ -40,12 +41,13 @@ public abstract class ActionBase {
             String command = request.getParameter(ForwardConst.CMD.getValue());
 
             commandMethod = this.getClass().getDeclaredMethod(command, new Class[0]);
-            commandMethod.invoke(this, new Object[0]); //メソッドに渡す引数はなし
+            commandMethod.invoke(this, new Object[0]);
 
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | NullPointerException e) {
 
             e.printStackTrace();
+
             forward(ForwardConst.FW_ERR_UNKNOWN);
         }
 
@@ -57,7 +59,6 @@ public abstract class ActionBase {
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 
         dispatcher.forward(request, response);
-
     }
 
     protected void redirect(ForwardConst action, ForwardConst command)
@@ -71,7 +72,6 @@ public abstract class ActionBase {
         response.sendRedirect(redirectUrl);
 
     }
-
 
     protected boolean checkToken() throws ServletException, IOException {
 
@@ -122,11 +122,9 @@ public abstract class ActionBase {
         return request.getParameter(key.getValue());
     }
 
-
     protected <V> void putRequestScope(AttributeConst key, V value) {
         request.setAttribute(key.getValue(), value);
     }
-
 
     @SuppressWarnings("unchecked")
     protected <R> R getSessionScope(AttributeConst key) {

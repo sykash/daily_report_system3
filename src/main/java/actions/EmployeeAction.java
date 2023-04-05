@@ -49,18 +49,17 @@ public class EmployeeAction extends ActionBase {
     }
 
     public void entryNew() throws ServletException, IOException {
-        if (checkAdmin()) {
+
 
         putRequestScope(AttributeConst.TOKEN, getTokenId());
         putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView());
 
         forward(ForwardConst.FW_EMP_NEW);
         }
-    }
+
 
     public void create() throws ServletException, IOException {
-
-        if (checkAdmin() && checkToken()) {
+        if (checkToken()) {
 
             EmployeeView ev = new EmployeeView(
                     null,
@@ -94,7 +93,7 @@ public class EmployeeAction extends ActionBase {
         }
     }
     public void show() throws ServletException, IOException {
-        if (checkAdmin()) {
+
 
         EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 
@@ -108,9 +107,9 @@ public class EmployeeAction extends ActionBase {
 
         forward(ForwardConst.FW_EMP_SHOW);
         }
-    }
+
     public void edit() throws ServletException, IOException {
-        if (checkAdmin()) {
+
         EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 
         if (ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
@@ -124,10 +123,10 @@ public class EmployeeAction extends ActionBase {
 
         forward(ForwardConst.FW_EMP_EDIT);
         }
-    }
+
 
     public void update() throws ServletException, IOException {
-        if (checkAdmin() && checkToken()) {
+        if (checkToken()) {
 
             EmployeeView ev = new EmployeeView(
                     toNumber(getRequestParam(AttributeConst.EMP_ID)),
@@ -160,7 +159,7 @@ public class EmployeeAction extends ActionBase {
     }
 
     public void destroy() throws ServletException, IOException {
-        if (checkAdmin() && checkToken()) {
+        if (checkToken()) {
 
             service.destroy(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 

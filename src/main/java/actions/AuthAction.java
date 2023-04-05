@@ -24,16 +24,14 @@ public class AuthAction extends ActionBase {
 
         service.close();
     }
-
     public void showLogin() throws ServletException, IOException {
-
         putRequestScope(AttributeConst.TOKEN, getTokenId());
-
         String flush = getSessionScope(AttributeConst.FLUSH);
         if (flush != null) {
             putRequestScope(AttributeConst.FLUSH,flush);
             removeSessionScope(AttributeConst.FLUSH);
         }
+
         forward(ForwardConst.FW_LOGIN);
     }
 
@@ -46,7 +44,6 @@ public class AuthAction extends ActionBase {
         Boolean isValidEmployee = service.validateLogin(code, plainPass, pepper);
 
         if (isValidEmployee) {
-
             if (checkToken()) {
 
                 EmployeeView ev = service.findOne(code, plainPass, pepper);
@@ -55,11 +52,9 @@ public class AuthAction extends ActionBase {
                 redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
             }
         } else {
-
             putRequestScope(AttributeConst.TOKEN, getTokenId());
             putRequestScope(AttributeConst.LOGIN_ERR, true);
             putRequestScope(AttributeConst.EMP_CODE, code);
-
             forward(ForwardConst.FW_LOGIN);
         }
     }
@@ -67,12 +62,8 @@ public class AuthAction extends ActionBase {
     public void logout() throws ServletException, IOException {
 
         removeSessionScope(AttributeConst.LOGIN_EMP);
-
         putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGOUT.getMessage());
-
         redirect(ForwardConst.ACT_AUTH, ForwardConst.CMD_SHOW_LOGIN);
-
     }
-
 
 }

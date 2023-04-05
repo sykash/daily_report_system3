@@ -1,6 +1,5 @@
 package services;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,7 +11,9 @@ import constants.JpaConst;
 import models.Report;
 import models.validators.ReportValidator;
 
+
 public class ReportService extends ServiceBase {
+
 
     public List<ReportView> getMinePerPage(EmployeeView employee, int page) {
 
@@ -23,6 +24,7 @@ public class ReportService extends ServiceBase {
                 .getResultList();
         return ReportConverter.toViewList(reports);
     }
+
 
     public long countAllMine(EmployeeView employee) {
 
@@ -42,6 +44,7 @@ public class ReportService extends ServiceBase {
         return ReportConverter.toViewList(reports);
     }
 
+
     public long countAll() {
         long reports_count = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT, Long.class)
                 .getSingleResult();
@@ -52,6 +55,7 @@ public class ReportService extends ServiceBase {
         return ReportConverter.toView(findOneInternal(id));
     }
 
+
     public List<String> create(ReportView rv) {
         List<String> errors = ReportValidator.validate(rv);
         if (errors.size() == 0) {
@@ -61,8 +65,10 @@ public class ReportService extends ServiceBase {
             createInternal(rv);
         }
 
+
         return errors;
     }
+
 
     public List<String> update(ReportView rv) {
 
@@ -76,12 +82,15 @@ public class ReportService extends ServiceBase {
             updateInternal(rv);
         }
 
+
         return errors;
     }
+
 
     private Report findOneInternal(int id) {
         return em.find(Report.class, id);
     }
+
 
     private void createInternal(ReportView rv) {
 
@@ -90,6 +99,7 @@ public class ReportService extends ServiceBase {
         em.getTransaction().commit();
 
     }
+
 
     private void updateInternal(ReportView rv) {
 
