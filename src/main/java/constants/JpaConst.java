@@ -13,14 +13,18 @@ public interface JpaConst {
     String EMP_COL_NAME = "name";
     String EMP_COL_PASS = "password";
     String EMP_COL_ADMIN_FLAG = "admin_flag";
+    String EMP_COL_LEAD_FLAG = "lead_flag";
     String EMP_COL_CREATED_AT = "created_at";
     String EMP_COL_UPDATED_AT = "updated_at";
     String EMP_COL_DELETE_FLAG = "delete_flag";
 
+    int ROLE_LEAD = 2;
     int ROLE_ADMIN = 1;
     int ROLE_GENERAL = 0;
     int EMP_DEL_TRUE = 1;
     int EMP_DEL_FALSE = 0;
+    int GRANT_FLAR_TRUE = 1;
+    int GRANT_FLAR_FALSE = 0;
 
     String TABLE_REP = "reports";
 
@@ -31,6 +35,7 @@ public interface JpaConst {
     String REP_COL_CONTENT = "content";
     String REP_COL_CREATED_AT = "created_at";
     String REP_COL_UPDATED_AT = "updated_at";
+    String REP_COL_GRANTED = "granted";
 
     String ENTITY_EMP = "employee";
     String ENTITY_REP = "report";

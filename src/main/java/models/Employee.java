@@ -40,6 +40,7 @@ import lombok.Setter;
 @Entity
 public class Employee {
 
+
     @Id
     @Column(name = JpaConst.EMP_COL_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

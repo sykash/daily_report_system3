@@ -8,26 +8,9 @@ import constants.JpaConst;
 import models.Employee;
 
 public class EmployeeConverter {
-
     public static Employee toModel(EmployeeView ev) {
 
-        return new Employee(
-                ev.getId(),
-                ev.getCode(),
-                ev.getName(),
-                ev.getPassword(),
-                ev.getAdminFlag() == null
-                        ? null
-                        : ev.getAdminFlag() == AttributeConst.ROLE_ADMIN.getIntegerValue()
-                                ? JpaConst.ROLE_ADMIN
-                                : JpaConst.ROLE_GENERAL,
-                ev.getCreatedAt(),
-                ev.getUpdatedAt(),
-                ev.getDeleteFlag() == null
-                        ? null
-                        : ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
-                                ? JpaConst.EMP_DEL_TRUE
-                                : JpaConst.EMP_DEL_FALSE);
+        return new Employee();
     }
 
     public static EmployeeView toView(Employee e) {
@@ -45,7 +28,9 @@ public class EmployeeConverter {
                         ? null
                         : e.getAdminFlag() == JpaConst.ROLE_ADMIN
                                 ? AttributeConst.ROLE_ADMIN.getIntegerValue()
-                                : AttributeConst.ROLE_GENERAL.getIntegerValue(),
+                                        :e.getAdminFlag() == JpaConst.ROLE_LEAD
+                                        ? AttributeConst.ROLE_LEAD.getIntegerValue()
+                                        : AttributeConst.ROLE_GENERAL.getIntegerValue(),
                 e.getCreatedAt(),
                 e.getUpdatedAt(),
                 e.getDeleteFlag() == null
@@ -64,7 +49,6 @@ public class EmployeeConverter {
 
         return evs;
     }
-
     public static void copyViewToModel(Employee e, EmployeeView ev) {
         e.setId(ev.getId());
         e.setCode(ev.getCode());
@@ -76,5 +60,6 @@ public class EmployeeConverter {
         e.setDeleteFlag(ev.getDeleteFlag());
 
     }
+
 
 }

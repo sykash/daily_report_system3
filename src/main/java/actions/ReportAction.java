@@ -85,7 +85,8 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
-                    null);
+                    null,
+                    getRequestParam(AttributeConst.REP_GRANT));
 
             List<String> errors = service.create(rv);
 

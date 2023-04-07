@@ -27,4 +27,6 @@ public class ReportView {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private String granted;
 }

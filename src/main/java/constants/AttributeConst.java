@@ -22,12 +22,17 @@ public enum AttributeConst {
     EMP_PASS("password"),
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
+    EMP_LEAD_FLG("lead-flag"),
 
+    ROLE_LEAD(2),
     ROLE_ADMIN(1),
     ROLE_GENERAL(0),
 
     DEL_FLAG_TRUE(1),
     DEL_FLAG_FALSE(0),
+
+    LEAD_FLAG_TRUE(1),
+    LEAD_FLAG_FALSE(0),
 
     REPORT("report"),
     REPORTS("reports"),
@@ -35,7 +40,8 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+    REP_GRANT("reprt_grant");
 
     private final String text;
     private final Integer i;
