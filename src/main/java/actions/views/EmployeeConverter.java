@@ -10,8 +10,27 @@ import models.Employee;
 public class EmployeeConverter {
     public static Employee toModel(EmployeeView ev) {
 
-        return new Employee();
+        return new Employee(
+                ev.getId(),
+                ev.getCode(),
+                ev.getName(),
+                ev.getPassword(),
+                ev.getAdminFlag() == null
+                        ? null
+                        : ev.getAdminFlag() == JpaConst.ROLE_ADMIN
+                                ? AttributeConst.ROLE_ADMIN.getIntegerValue()
+                                        :ev.getAdminFlag() == JpaConst.ROLE_LEAD
+                                        ? AttributeConst.ROLE_LEAD.getIntegerValue()
+                                        : AttributeConst.ROLE_GENERAL.getIntegerValue(),
+                ev.getCreatedAt(),
+                ev.getUpdatedAt(),
+                ev.getDeleteFlag() == null
+                        ? null
+                        : ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
+                                ? JpaConst.EMP_DEL_TRUE
+                                : JpaConst.EMP_DEL_FALSE);
     }
+
 
     public static EmployeeView toView(Employee e) {
 

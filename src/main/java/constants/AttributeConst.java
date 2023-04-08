@@ -22,7 +22,6 @@ public enum AttributeConst {
     EMP_PASS("password"),
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
-    EMP_LEAD_FLG("lead-flag"),
 
     ROLE_LEAD(2),
     ROLE_ADMIN(1),
