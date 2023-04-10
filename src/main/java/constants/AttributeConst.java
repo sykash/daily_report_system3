@@ -30,8 +30,8 @@ public enum AttributeConst {
     DEL_FLAG_TRUE(1),
     DEL_FLAG_FALSE(0),
 
-    LEAD_FLAG_TRUE(1),
-    LEAD_FLAG_FALSE(0),
+    GRANT_FLAG_TRUE(1),
+    GRANT_FLAG_FALSE(0),
 
     REPORT("report"),
     REPORTS("reports"),
@@ -40,7 +40,8 @@ public enum AttributeConst {
     REP_DATE("report_date"),
     REP_TITLE("title"),
     REP_CONTENT("content_msg"),
-    REP_GRANT("reprt_grant");
+    REP_LEAD_FLG("lead_flag"),
+    REP_GRANT_FLG("grant_flag");
 
     private final String text;
     private final Integer i;

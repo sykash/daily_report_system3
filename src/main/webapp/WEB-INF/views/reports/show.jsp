@@ -6,6 +6,7 @@
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -37,13 +38,13 @@
                     <fmt:parseDate value="${report.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
                     <td><fmt:formatDate value="${updateDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
-                 <tr>
-                    <th>承認</th>
-                    <fmt:parseDate value="${report.granted}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
-                    <td><fmt:formatDate value="${updateDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-                </tr>
             </tbody>
         </table>
+
+        <form method="POST" action="<c:url value='?action=${action}&command=${commCrt}' />">
+            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+            <button type="submit">承認</button>
+        </form>
 
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>

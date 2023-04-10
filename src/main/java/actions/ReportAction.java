@@ -86,7 +86,7 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
                     null,
-                    getRequestParam(AttributeConst.REP_GRANT));
+                    getRequestParam(AttributeConst.REP_ID));
 
             List<String> errors = service.create(rv);
 
@@ -117,7 +117,7 @@ public class ReportAction extends ActionBase {
         } else {
 
             putRequestScope(AttributeConst.REPORT, rv);
-
+            putRequestScope(AttributeConst.TOKEN, getTokenId());
             forward(ForwardConst.FW_REP_SHOW);
         }
     }
@@ -167,7 +167,33 @@ public class ReportAction extends ActionBase {
 
             }
         }
+        }
+
+        public void grant() throws ServletException, IOException {
+
+            if (checkToken()) {
+
+                ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+                rv.setGranted(getRequestParam(AttributeConst.REP_GRANT_FLG));
+
+                List<String> errors = service.grant(rv);
+
+                if (errors.size() > 0) {
+
+                    putRequestScope(AttributeConst.TOKEN, getTokenId());
+                    putRequestScope(AttributeConst.REPORT, rv);
+                    putRequestScope(AttributeConst.ERR, errors);
+
+                    forward(ForwardConst.FW_REP_EDIT);
+                } else {
+
+                    putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+
+                    redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+
+                }
+            }
     }
-
-
 }
+
