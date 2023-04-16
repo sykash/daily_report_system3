@@ -89,22 +89,19 @@ public class ReportService extends ServiceBase {
 
     public List<String> grant(ReportView rv) {
 
-        //バリデーションを行う
         List<String> errors = ReportValidator.validate(rv);
 
         if (errors.size() == 0) {
 
-            //更新日時を現在時刻に設定
             LocalDateTime ldt = LocalDateTime.now();
             rv.setUpdatedAt(ldt);
 
             grantInternal(rv);
         }
 
-        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+
         return errors;
     }
-
 
     private Report findOneInternal(int id) {
         return em.find(Report.class, id);
@@ -115,6 +112,7 @@ public class ReportService extends ServiceBase {
 
         em.getTransaction().begin();
         em.persist(ReportConverter.toModel(rv));
+        em.getTransaction().commit();
 
     }
 

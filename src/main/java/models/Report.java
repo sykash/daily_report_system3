@@ -69,7 +69,8 @@ public class Report {
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
-    private String granted;
+    @Column(name = JpaConst.REP_COL_LEAD_FLAG, nullable = false)
+    private Integer grantedFlag;
+
 
 }

@@ -28,5 +28,5 @@ public class ReportView {
 
     private LocalDateTime updatedAt;
 
-    private String granted;
+    private Integer grantedFlag;
 }

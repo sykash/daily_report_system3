@@ -2,6 +2,8 @@ package actions.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.AttributeConst;
+import constants.JpaConst;
 import models.Report;
 
 public class ReportConverter {
@@ -15,7 +17,11 @@ public class ReportConverter {
                 rv.getContent(),
                 rv.getCreatedAt(),
                 rv.getUpdatedAt(),
-                rv.getGranted());
+                rv.getGrantedFlag() == null
+                ? null
+                : rv.getGrantedFlag() == AttributeConst.GRANT_FLAG_TRUE.getIntegerValue()
+                        ? JpaConst.REP_LEAD_TRUE
+                        : JpaConst.REP_LEAD_FALSE);
     }
 
 
@@ -33,7 +39,11 @@ public class ReportConverter {
                 r.getContent(),
                 r.getCreatedAt(),
                 r.getUpdatedAt(),
-                r.getGranted());
+                r.getGrantedFlag() == null
+                ? null
+                : r.getGrantedFlag() == AttributeConst.GRANT_FLAG_TRUE.getIntegerValue()
+                        ? JpaConst.REP_LEAD_TRUE
+                        : JpaConst.REP_LEAD_FALSE);
     }
 
 
@@ -55,7 +65,7 @@ public class ReportConverter {
         r.setContent(rv.getContent());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
-        r.setGranted(rv.getGranted());
+        r.setGrantedFlag(rv.getGrantedFlag());
 
     }
 
